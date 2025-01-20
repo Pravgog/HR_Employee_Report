@@ -1,4 +1,4 @@
-$$$sql
+
 create database Human_Resource;
 
 use human_resource;
@@ -114,7 +114,6 @@ max(age) old
 from hr
 where age >= 18 and termdate = 0000-00-00;
 
-
 select 
 case
 when age >=18 and age<= 24 then '18-24'
@@ -164,12 +163,6 @@ where age >= 18 and termdate = 0000-00-00
 group by location_city,location_state
 order by location_state;
 
--- 11. What is the tenure distribution for each department?
-SELECT department, ROUND(AVG(DATEDIFF(CURDATE(), termdate)/365),0) as avg_tenure
-FROM hr
-WHERE termdate <= CURDATE() AND termdate <> 0000-00-00 AND age >= 18
-GROUP BY department;
-
 -- 10. How has the company's employee count changed over time based on hire and term dates?
 
 SELECT 
@@ -185,4 +178,10 @@ GROUP BY
     YEAR(hire_date)
 ORDER BY 
     YEAR(hire_date) ASC;
-$$$sql
+
+-- 11. What is the tenure distribution for each department?
+
+SELECT department, ROUND(AVG(DATEDIFF(CURDATE(), termdate)/365),0) as avg_tenure
+FROM hr
+WHERE termdate <= CURDATE() AND termdate <> 0000-00-00 AND age >= 18
+GROUP BY department;
